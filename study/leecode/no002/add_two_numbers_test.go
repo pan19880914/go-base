@@ -1,41 +1,24 @@
 package no002
 
 import (
+	"fmt"
 	"testing"
 )
 
-func TestReverseList(t *testing.T) {
-	//actual := &ListNode{2,&ListNode{4,&ListNode{3,nil}}}
-	//number := 0
-	//for i := 0 ; actual != nil;i++{
-	//		number += int(math.Pow10(i)) * actual.Val
-	//	actual = actual.Next
-	//}
-	//fmt.Println(number)
-	//actual1 := &ListNode{5,&ListNode{6,&ListNode{4,nil}}}
-	//for i := 0 ; actual1 != nil;i++{
-	//	number += int(math.Pow10(i)) * actual1.Val
-	//	actual1 = actual1.Next
-	//}
-	//fmt.Println(number)
-	//
-	//itoa := strings.Split(strconv.Itoa(number),"")
-	//node := &ListNode{}
-	//fmt.Println(itoa)
-	//for i,v := range itoa{
-	//	atoi, _ := strconv.Atoi(v)
-	//	if i == 0 {
-	//		node.Val = atoi
-	//		continue
-	//	}
-	//	tempnode := &ListNode{}
-	//	tempnode.Val = atoi
-	//	tempnode.Next = node
-	//	node = tempnode
-	//}
-	//fmt.Println(node.Val)
-	//fmt.Println(node.Next.Val)
-	//fmt.Println(node.Next.Next.Val)
-	//fmt.Println(*actual)
+func BenchmarkCacheData(b *testing.B) {
+	l1 := &ListNode{2, &ListNode{4, &ListNode{3, &ListNode{3, nil}}}}
+	l2 := &ListNode{5, &ListNode{6, &ListNode{4, nil}}}
+	b.ResetTimer()
+	addTwoNumbers(l1, l2)
+	b.StopTimer()
+}
+func TestAddTwoNumbers(t *testing.T) {
+	l1 := &ListNode{2, &ListNode{4, &ListNode{3, &ListNode{3, nil}}}}
+	l2 := &ListNode{5, &ListNode{6, &ListNode{4, nil}}}
+	actual := addTwoNumbers(l1, l2)
+	fmt.Println(actual.Val)
+	fmt.Println(actual.Next.Val)
+	fmt.Println(actual.Next.Next.Val)
+	fmt.Println(actual.Next.Next.Next.Val)
 	//assert.Equal(t, expected, actual)
 }
